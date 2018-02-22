@@ -1,0 +1,13 @@
+{
+  "name": "lensyn-ui",
+  "version": "0.0.24",
+  "description": "lensyn ui component",
+  "main": "./lib/lensyn-ui.js",
+  "scripts": {},
+  "keywords": [
+    "lensyn"
+  ],
+  "author": "lensyn@lensyn.com",
+  "license": "",
+  "devDependencies": {}
+}

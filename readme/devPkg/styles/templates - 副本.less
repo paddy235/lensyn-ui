@@ -1,0 +1,638 @@
+/*********************************************************************
+ * Created by deming-su on 2017-08-17                                *
+ * Modified by tr on 2017-12-05                                      *
+ *********************************************************************/
+
+
+/* color 属性 */
+@white: #fff;
+@black: #333;
+@black-light: #999;
+@border: #dcdcdc;
+@blue: #1296db;
+@blue-light: #7ac9f2;
+@activeButton: #407DD1; //表单高亮按钮背景色
+@success-green:#2D8D46;
+@error-red: #D93B25;
+@warning-orange: orange;
+@info-blue: #407DD1;
+
+/* border 属性 */
+.border(@width: 1px, @type: solid, @color: @border) {
+  border: @width @type @color;
+}
+
+/* 倒角函数 */
+.border-radius(@size: 5px;) {
+  -webkit-border-radius: @size;
+  border-radius: @size;
+}
+
+/*boxshadow样式函数*/
+.shadow(@size1: 0;@size2: 0;@size3: 20px;@color: rgba(51, 51, 51, .4)) {
+  -webkit-box-shadow: @size1 @size2 @size3 @color;
+  -moz-box-shadow: @size1 @size2 @size3 @color;
+  box-shadow: @size1 @size2 @size3 @color;
+}
+
+/* 触摸样式 */
+.touch() {
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* 下拉框 --start---*/
+.selection-box {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  >.ipt-box {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    > .ipt {
+      display: block;
+      width: 100%;
+      height: 100%;
+      padding: 0 5px;
+      outline: none;
+      .border();
+      .border-radius(4px);
+      &::placeholder {
+        color: @black-light;
+      }
+    }
+    >.icon {
+      position: absolute;
+      top: 3px;
+      right: 0;
+      bottom: 3px;
+      width: 36px;
+      background: url(../images/templates/arrow.png) center center / 18px 18px no-repeat;
+      transition: transform .2s linear;
+      &.active {
+        transform: rotate(180deg);
+      }
+    }
+  }
+  > .box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 160px;
+    height: 200px;
+    .border();
+    .border-radius(4px);
+    background-color: @white;
+    .shadow(@color: @blue-light);
+    z-index: 999;
+    > .icon {
+      position: absolute;
+      top: -5px;
+      left: 20px;
+      width: 8px;
+      height: 8px;
+      border-left: solid 1px @border;
+      border-top: solid 1px @border;
+      transform: rotate(45deg);
+      background-color: @white;
+      z-index: 1;
+    }
+    > .block {
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: @white;
+      .border-radius(4px);
+      overflow: hidden;
+      z-index: 2;
+      > .list {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        overflow-x: hidden;
+        > .item {
+          display: block;
+          height: 26px;
+          line-height: 26px;
+          padding: 0 8px;
+          color: @blue;
+          font-size: 12px;
+          .touch();
+          &:hover {
+            background-color: @blue-light;
+            color: @white;
+          }
+          &.active {
+            background-color: @blue;
+            color: @white;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* 下拉框 --end---*/
+
+/* 按钮样式 ---start---*/
+.button-temp {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  .border(@color: @blue);
+  .border-radius();
+  margin: 0 10px;
+  padding: 0 10px;
+  > span {
+    display: block;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    font-size: 14px;
+  }
+}
+/* 按钮样式 ---end---*/
+
+/* 选择日期样式  ----start--- */
+.datePicker-box {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  >.modal {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, .6);
+      z-index: 1;
+  }
+  >.layer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 240px;
+      background-color: #fff;
+      z-index: 2;
+      border-bottom: solid 1px #dcdcdc;
+      >.title {
+        position: relative;
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        overflow: hidden;
+        >.btn {
+          float: left;
+          width: 80px;
+          height: 100%;
+          font-size: 14px;
+          color: #666;
+          text-align: center;
+          &.sub {
+            float: right;
+            color: #1296db;
+          }
+        }
+      }
+      >.box {
+        position: relative;
+        width: 100%;
+        height: 210px;
+        overflow: hidden;
+        >.items {
+          position: relative;
+          width: 100%;
+          height: 210px;
+          overflow: hidden;
+          z-index: 8;
+          >.list {
+            position: absolute;
+            top: 0;
+              >.item {
+                  display: block;
+                  height: 30px;
+                  >.label {
+                    display: block;
+                    height: 30px;
+                    line-height: 30px;
+                    text-align: center;
+                    font-size: 14px;
+                    color: #333;
+                    transform-style: preserve-3d;
+                    &.b2 {
+                        transform: rotateX(-50deg);
+                    }
+                    &.b1 {
+                        transform: rotateX(-40deg);
+                    }
+                    &.b0 {
+                        transform: rotateX(-20deg);
+                    }
+                    &.a0 {
+                        transform: rotateX(20deg);
+                    }
+                    &.a1 {
+                        transform: rotateX(40deg);
+                    }
+                    &.a2 {
+                        transform: rotateX(50deg);
+                    }
+                  }
+              }
+          }
+        }
+        >.modal {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(to bottom, #fff, rgba(255, 255, 255, 0) 45%, rgba(255, 255, 255, 0) 55%, #fff);
+          z-index: 9;
+        }
+        >.line {
+          position: absolute;
+          top: 50%;
+          left: 0;
+          width: 100%;
+          height: 32px;
+          margin-top: -16px;
+          border-top: solid 1px #d7d7d7;
+          border-bottom: solid 1px #d7d7d7;
+          z-index: 11;
+        }
+        >.touch {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 12;
+          display: flex;
+          >.item {
+              height: 100%;
+          }
+        }
+      }
+  }
+}
+/* 选择日期样式  ----end--- */
+
+/* tabs样式 --start---*/
+.tabs-res-item {
+  position: relative;
+  width: 100%;
+  background-color: @white;
+  overflow: hidden;
+  &.borderStyle{
+    border-left: solid 1px @border;
+  }
+  &.tab-position{
+    position: absolute;
+    &.left{
+      left: 0;
+      width: 128px;
+      >.border{
+        height: 100%;
+        width: 1px;
+        z-index: 2;
+      };
+      >.item{
+        text-align: right;
+        padding-right: 20px;
+        z-index: 2;
+        margin-right: 1px;
+        &.active {
+          color: @activeButton;
+          border: 0;
+          border-right: solid 2px @activeButton;
+          z-index: 3;
+        }
+      }
+    };
+    &.right{
+      right: 0;
+      width: 128px;
+      >.border{
+        height: 100%;
+        width: 1px;
+        z-index: 2;
+      };
+      >.item{
+        text-align: left;
+        padding-left: 20px;
+        margin-left: 1px;
+        z-index: 2;
+        &.active {
+          color: @activeButton;
+          border: 0;
+          border-left: solid 2px @activeButton;
+          z-index: 3;
+        }
+      }
+    };
+    &.bottom{
+      bottom: 0;
+    }
+  }
+  >.border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: @border;
+    z-index: 2;
+  }
+  >.item {
+    position: relative;
+    float: left;
+    width: 128px;
+    height: 32px;
+    padding: 0 8px;
+    line-height: 32px;
+    font-size: 12px;
+    text-align: center;
+    background-color: @white;
+    color: @black;
+    .touch();
+    &.borderStyle{
+      border-top: solid 1px @border;
+      border-right: solid 1px @border;
+      border-bottom: solid 1px @border;
+      &.active {
+        color: @activeButton;
+        background-color: @white;
+        border-bottom-color: @white;
+        z-index: 3;
+      }
+    }
+    &:hover{
+      color: @activeButton;
+    }
+    &.active {
+      color: @activeButton;
+      border-bottom: solid 2px @activeButton;
+      z-index: 3;
+    }
+  }
+}
+/* tabs样式 --end---*/
+
+/* alert 样式 --start-- */
+.ls-alert_Wrapper{
+    position: absolute;
+    top:0;
+    left:0;
+    z-index:999999;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    background: #dcdcdc;
+    border:none;
+
+    & >.ls-alert_Content {
+        position: relative;
+        top:50%;
+        padding:0;
+        -webkit-border-radius:5px;
+        -moz-border-radius:5px;
+        border-radius:5px;
+        background: @info-blue;
+        color:#fff;
+        width: 80%;
+        margin:0 auto;
+        overflow: hidden;
+        .ls-alert_Content-innerContent{
+            display: flex;
+            .contents{
+                flex:1;
+            }
+        }
+        .ls-alert_Icon{
+            padding:5px 10px 5px 5px;
+            display: block;
+            overflow: hidden;
+            img{
+                width: 100%;
+                height: 100%;
+            }
+            &.icon-left{
+                float: left;
+            }
+            &.icon-right{
+                float: right;
+            }
+
+            &.icon-top{
+                //width: 100%;
+                text-align:center;
+            }
+            &.icon-bottom{
+                //float: right;//TODO how to do?
+
+            }
+
+            &.icon-small{
+                width: 30px;
+                height: 30px;
+            }
+            &.icon-middle{
+                width: 50px;
+                height: 50px;
+            }
+            &.icon-big{
+                width: 70px;
+                height: 70px;
+            }
+
+        }
+        .ls-alert_Title{
+            display: block;
+            margin: 0;
+            padding: 10px 10px 5px;
+            font-size:14px;
+            text-align:left;
+            &.center{
+                text-align:center;
+            }
+            &.left{
+                text-align:left;
+            }
+            &.right{
+                text-align:right;
+            }
+        }
+        .ls-alert_Description{
+            padding: 5px 10px 10px;
+            display: block;
+            margin: 0;
+            font-size:12px;
+            text-align:left;
+        }
+        .ls-alert_Close{
+            position: absolute;
+            top:0;
+            right:0;
+            padding:5px;
+            &.close-default{
+                &:before{
+                    content: "x";
+                }
+            }
+            &.close-image{
+                img{
+                    width: 25px;
+                    height: 25px;
+                }
+            }
+            &.close-text{
+                span{
+                    color: #f8f8f8;
+                    font-size:12px;
+                }
+            }
+        }
+
+    }
+
+    &.success >.ls-alert_Content{
+        background: @success-green;
+        //color:#333;
+    }
+    &.info >.ls-alert_Content{
+        background: @info-blue;
+    }
+    &.error >.ls-alert_Content{
+        background: @error-red;
+    }
+    &.warning >.ls-alert_Content{
+        background: @warning-orange;
+
+    }
+}
+/* alert 样式 --end-- */
+
+/* tree 样式 -- start-- */
+.ls-tree-item{
+ position: relative;
+  list-style:none ;
+  &:before{
+    content: '';
+    position: absolute;
+    left: -28px;
+    top:0;
+    bottom:0;
+    //border-left: dashed 1px #f00;
+  }
+  &:last-child{
+    &:before{
+      height:12px;
+      bottom: auto;
+    }
+  }
+  > .tree-label{
+    display: block;
+    position: relative;
+    height: 24px;
+    line-height: 24px;
+    padding-left: 16px;
+    font-size: 14px;
+    color: #333;
+    &.tree-check{
+      padding-left: 32px;
+    }
+
+    > .tree-show-label{
+      &:after{
+        content: '';
+        position: absolute;
+        top: 6px;
+        left: 16px;
+        width: 12px;
+        height: 12px;
+        border:solid 1px #ccc;
+        border-radius: 2px;
+      }
+      &.active{
+        &:after{
+          content: "";
+          background-color: #409eff;
+          border-color: #409eff;
+          z-index: 9;
+        }
+        &:before{
+          box-sizing: content-box;
+          content: "";
+          position: absolute;
+          top:7px;
+          left:20px;
+          width: 3px;
+          height: 7px;
+          border: 1px solid @white;
+          border-left: 0;
+          border-top: 0;
+          transform: rotate(45deg);
+          transition: transform .15s cubic-bezier(.71,-.46,.88,.6) .05s;
+          transform-origin: center;
+          z-index: 99;
+        }
+        &.tree-check{
+          &:before{
+            content: '';
+            position: absolute;
+            top: 11px;
+            left: 19px;
+            height: auto;
+            width: 4px;
+            border-left:1px solid @white;
+            border-top: 1px solid @white;
+            transform: rotate(0);
+          }
+        }
+      }
+    }
+    > .tree-icon{
+      &:after{
+        content: '';
+        position: absolute;
+        top:8px;
+        left: 0;
+        width: 0;
+        height: 0;
+        border-top: solid 6px @black-light;
+        border-left: solid 6px transparent;
+        border-right: solid 6px transparent;
+        transform: rotate(-90deg);
+        transition: .3s;
+      }
+      &.tree-icon-select{
+        &:after{
+          transform: rotate(0);
+        }
+      }
+    }
+  }
+
+   .tree-list{
+     position: relative;
+     list-style: none;
+     padding-left: 28px;
+     li{
+       padding: 5px 0;
+    }
+  }
+}
+/* tree 样式 -- end-- */
